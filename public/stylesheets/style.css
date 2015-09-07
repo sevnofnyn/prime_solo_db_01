@@ -1,0 +1,27 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #e8e8e8;
+}
+form {
+  display: inline-block;
+  text-align: center;
+  line-height: 250%;
+}
+h1{
+  font-size: 20px;
+  color: deepskyblue;
+  font-weight: lighter;
+  font-family: "Trebuchet MS", Helvetica, sans-serif
+
+}
+
+h2{
+  font-size:18px;
+  color: deepskyblue;
+  font-weight: lighter;
+  font-family: "Trebuchet MS", Helvetica, sans-serif
+}
+a {
+  color: #00B7FF;
+}
