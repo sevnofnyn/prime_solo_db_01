@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet"  href="stylesheets/style.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
-<h1>Create your account</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div>
+<h1>Paper Street Password Synthesizer</h1>
+        </div>
+    </nav>
+<div class="left">
+<h2> You must create an account in<br /> order to view our soap catalog.</h2>
+</div>
+<div>
+
     <form action="/register" method="post">
         <div>
             <label for="username">Username:</label>
@@ -28,11 +40,12 @@
             <label for="email">Email Address:</label>
             <input type="email" name="email" id="email">
         </div>
-        <div>
+        <div class="register">
             <input type="submit" value="Register">
         </div>
 
     </form>
+</div>
 
 </body>
 </html>
