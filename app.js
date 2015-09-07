@@ -11,12 +11,6 @@ var localStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var User = require('./models/users');
 
-var app = express();
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var register = require('./routes/register');
-
-
 //Mongo setup
 var mongoURI = 'mongodb://localhost:27017/prime_example_passport';
 var MongoDB = mongoose.connect(mongoURI).connection;
@@ -27,6 +21,14 @@ MongoDB.on('error', function(err) {
 MongoDB.once('open', function(){
   console.log('mongodb connection open');
 });
+
+var app = express();
+var index = require('./routes/index');
+var users = require('./routes/users');
+var register = require('./routes/register');
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,14 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(session({
-  secret: 'secret',
-  key: 'user',
-  resave: true,
-  saveUninitialized: false,
-  cookie: { maxAge: 60000, secure: false }
-}));
-
 passport.use('local', new localStrategy({
       passReqToCallback: true,
       usernameField: 'username'
@@ -62,7 +56,7 @@ passport.use('local', new localStrategy({
         if (!user)
           return done(null, false, {message: 'Incorrect username and password.'});
 
-      //test a matching password
+        //test a matching password
         user.comparePassword(password, function (err, isMatch)
         {
           if (err) throw err;
@@ -75,6 +69,16 @@ passport.use('local', new localStrategy({
       });
     }));
 
+app.use(session({
+  secret: 'secret',
+  key: 'user',
+  resave: true,
+  saveUninitialized: false,
+  cookie: { maxAge: 60000, secure: false }
+}));
+
+
+
 passport.serializeUser(function(user, done){
   done(null, user.id);
 });
@@ -85,7 +89,7 @@ passport.deserializeUser(function(id, done){
       });
       });
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 app.use('/register', register);
 
